@@ -1,25 +1,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.psj.akka</groupId>
-  <artifactId>akka_http</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>${project.artifactId}</name>
-  <description>My wonderfull scala app</description>
-  <inceptionYear>2015</inceptionYear>
-  <licenses>
-    <license>
-      <name>My License</name>
-      <url>http://....</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+  	<modelVersion>4.0.0</modelVersion>
+  	<groupId>com.psj.akka</groupId>
+  	<artifactId>akka_http</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<name>${project.artifactId}</name>
+  	<description>My wonderfull scala app</description>
+  	<inceptionYear>2015</inceptionYear>
+  	<licenses>
+    	<license>
+      		<name>My License</name>
+      		<url>http://....</url>
+      		<distribution>repo</distribution>
+    	</license>
+  	</licenses>
 
   <properties>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <encoding>UTF-8</encoding>
-    <scala.version>2.11.5</scala.version>
-    <scala.compat.version>2.11</scala.compat.version>
+    <scala.version>2.12.3</scala.version>
+    <scala.compat.version>2.12</scala.compat.version>
+    
+    <akka.http.version>10.1.0-RC1</akka.http.version>
+    <akka.stream.version>2.5.8</akka.stream.version>
   </properties>
 
   <dependencies>
@@ -28,26 +31,24 @@
       <artifactId>scala-library</artifactId>
       <version>${scala.version}</version>
     </dependency>
-
-    <!-- Test -->
+    
+    <!-- akka http default dependency -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
+		<groupId>com.typesafe.akka</groupId>
+		<artifactId>akka-http_2.12</artifactId>
+		<version>${akka.http.version}</version>
+	</dependency>
     <dependency>
-      <groupId>org.specs2</groupId>
-      <artifactId>specs2-core_${scala.compat.version}</artifactId>
-      <version>2.4.16</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.scalatest</groupId>
-      <artifactId>scalatest_${scala.compat.version}</artifactId>
-      <version>2.2.4</version>
-      <scope>test</scope>
-    </dependency>
+		<groupId>com.typesafe.akka</groupId>
+		<artifactId>akka-stream_2.12</artifactId>
+		<version>${akka.stream.version}</version>
+	</dependency>
+	
+	<dependency>
+	  <groupId>com.typesafe.akka</groupId>
+	  <artifactId>akka-http-spray-json_2.12</artifactId>
+	  <version>${akka.http.version}</version>
+	</dependency>
   </dependencies>
 
   <build>
@@ -74,21 +75,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.18.1</version>
-        <configuration>
-          <useFile>false</useFile>
-          <disableXmlReport>true</disableXmlReport>
-          <!-- If you have classpath issue like NoDefClassError,... -->
-          <!-- useManifestOnlyJar>false</useManifestOnlyJar -->
-          <includes>
-            <include>**/*Test.*</include>
-            <include>**/*Suite.*</include>
-          </includes>
-        </configuration>
       </plugin>
     </plugins>
   </build>
