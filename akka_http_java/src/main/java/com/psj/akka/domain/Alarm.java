@@ -8,7 +8,7 @@ public class Alarm {
 	final String message;
 	
 	@JsonCreator
-	Alarm(@JsonProperty("user") String user,
+	public Alarm(@JsonProperty("user") String user,
          @JsonProperty("message") String message) {
       this.user = user;
       this.message = message;

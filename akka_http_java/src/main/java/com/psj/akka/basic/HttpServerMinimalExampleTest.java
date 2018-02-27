@@ -45,12 +45,13 @@ public class HttpServerMinimalExampleTest extends AllDirectives {
 
   private Route createRoute() {
     return route(
-    	// post 방식 [http://localhost:8080/alarm/occurred]  <= Body 데이터 {"user":"psj","message":"Hi"}
+    	// post 방식 [http://localhost:8080/alarm/occurred] : Json 데이터 받아서 다시 Json 형태로 리턴함
         path(PathMatchers.segment("alarm").slash("occurred"), () ->
 	        post(() ->
-		        entity(Jackson.unmarshaller(Alarm.class), alarm -> 
-		        	complete(StatusCodes.OK, "user : " + alarm.getUser() + ", message : " + alarm.getMessage())))
-		        )
+		        entity(Jackson.unmarshaller(Alarm.class), alarm ->
+		        	complete(StatusCodes.OK, alarm, Jackson.<Alarm>marshaller())))
+		        	//complete(StatusCodes.OK, "user : " + alarm.getUser() + ", message : " + alarm.getMessage())))
+        	)
     	);
   }
 }
