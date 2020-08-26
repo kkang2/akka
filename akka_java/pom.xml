@@ -20,7 +20,7 @@
     <encoding>UTF-8</encoding>
     <scala.version>2.12.3</scala.version>
     <scala.compat.version>2.12</scala.compat.version>
-    <akka.version>2.5.9</akka.version>
+    <akka.version>2.5.16</akka.version>
   </properties>
 
   <dependencies>
